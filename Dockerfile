@@ -2,6 +2,10 @@ FROM python:3.10-slim
 
 RUN pip install flask opencv-python pillow
 
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0
+    
 ENV FLASK_ENV=production
 
 COPY . /opt/
