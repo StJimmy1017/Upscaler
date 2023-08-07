@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upscaler</title>
 </head>
-<body>
+<body bgcolor="azure">
+    <center>
     <h1>Image Upscaler</h1>
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="image" accept=".png, .jpg, .jpeg" required>
@@ -18,6 +19,7 @@
         </select>
         <button type="submit">Upscale Image</button>
     </form>
+    </center>
     {% if upscaled_image %}
         <h2>Upscaled Image</h2>
         <img src="{{ upscaled_image }}" alt="Upscaled Image">
