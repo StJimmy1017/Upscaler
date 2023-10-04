@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 
-RUN pip install flask opencv-python pillow
+RUN pip install requirements.txt
 
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
