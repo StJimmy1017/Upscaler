@@ -1,21 +1,7 @@
 from PIL import Image
 import cv2
 import numpy as np
-
-def nninterp(source):
-    width, height = source.size
-    new_width = width * 2
-    new_height = height * 2
-    nintendo = Image.new('RGB', (new_width, new_height))
-    for y in range(new_height):
-        for x in range(new_width):
-            original_x = int(x * 0.5)
-            original_y = int(y * 0.5)
-            original_x = min(original_x, source.width - 1)
-            original_y = min(original_y, source.height - 1)
-            color = source.getpixel((original_x, original_y))
-            nintendo.putpixel((x, y), color)
-    return nintendo
+from cv2 import dnn_superres
 
 def txsal(source):
     width, height = source.size
@@ -54,3 +40,30 @@ def cubic(source):
     source = np.array(source)
     buick = cv2.resize(source, dsize=(new_width, new_height), interpolation=cv2.INTER_CUBIC)
     return Image.fromarray(buick)
+
+def FSRCNN(source):
+    sr = dnn_superres.DnnSuperResImpl_create()
+    path = "FSRCNN_x2.pb"
+    sr.readModel(path)
+    sr.setModel("fsrcnn", 2)
+    source = np.array(source)
+    result = sr.upsample(source)
+    return Image.fromarray(result)
+
+def ESPCN(source):
+    sr = dnn_superres.DnnSuperResImpl_create()
+    path = "ESPCN_x2.pb"
+    sr.readModel(path)
+    sr.setModel("espcn", 2)
+    source = np.array(source)
+    result = sr.upsample(source)
+    return Image.fromarray(result)
+
+def SRN(source):
+    sr = dnn_superres.DnnSuperResImpl_create()
+    path = "LapSRN_x2.pb"
+    sr.readModel(path)
+    sr.setModel("lapsrn", 2)
+    source = np.array(source)
+    result = sr.upsample(source)
+    return Image.fromarray(result)
