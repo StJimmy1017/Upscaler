@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'ScaleCat'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E2F7F1DBDACC4CE9BC5A9DF9EFEA78D7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_510E12BCF9E24C84ADAAFD530BA1A067 }}
